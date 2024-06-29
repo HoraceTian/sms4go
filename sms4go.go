@@ -10,16 +10,38 @@ func NewSmsClient(options ...Option) Client {
 		options[i](opts)
 	}
 
-	// 3. 返回客户端
-	return &smsClient{}
+	// 3. 创建客户端
+	client := &smsClient{}
+
+	// 4. 初始化 Provider Holder
+	initSmsProviderHolder(client, *opts)
+
+	// 5. 初始化厂商 Sms 客户端
+	for cfgKey := range opts.configMap {
+		cfg := opts.configMap[cfgKey]
+		providerFactory := client.providerHolder.factories[cfg.GetSupplier()]
+		if providerFactory != nil {
+			smsBlender := providerFactory.CreateSms(cfg)
+			if client.blends == nil {
+				client.blends = make(map[string]ISmsBlender)
+			}
+			client.blends[smsBlender.GetSupplier()] = smsBlender
+		}
+	}
+
+	// 4. 返回客户端
+	return client
 }
 
-// GetSmsBlender 负载均衡获取 Blender
-func GetSmsBlender() {
+// 初始化 Sms Factory
+func initSmsProviderHolder(client *smsClient, opts sms4goOptions) {
+	// 1. 提取 Sms Provider 列表
+	factories := opts.factories
 
-}
+	// 2. 初始化 Holder
+	providerHolder := &providerFactoryHolder{}
+	providerHolder.registerFactories(factories)
 
-// GetSmsBlenderWithConfigId 根据 ConfigId 获取 Blender
-func GetSmsBlenderWithConfigId(configId string) {
-
+	// 3. 初始化 Sms Provider Holder
+	client.providerHolder = providerHolder
 }

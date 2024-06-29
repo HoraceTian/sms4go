@@ -19,6 +19,6 @@ type ISmsBlender interface {
 }
 
 type BaseBlender struct {
-	configId string
-	config   SupplierConfig
+	ConfigId string
+	Config   SupplierConfig
 }

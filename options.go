@@ -5,6 +5,7 @@ type (
 		smsConfig    *SmsConfig
 		configMap    map[string]SupplierConfig
 		interceptors []Interceptor
+		factories    []IProviderFactory
 	}
 )
 
@@ -25,5 +26,11 @@ func WithConfigMap(configMap map[string]SupplierConfig) Option {
 func WithSmsConfig(smsConfig *SmsConfig) Option {
 	return func(options *sms4goOptions) {
 		options.smsConfig = smsConfig
+	}
+}
+
+func WithProviderFactories(factories ...IProviderFactory) Option {
+	return func(options *sms4goOptions) {
+		options.factories = factories
 	}
 }
