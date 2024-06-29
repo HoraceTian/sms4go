@@ -20,10 +20,7 @@ func (f Factory) CreateSms(config sms4go.SupplierConfig) sms4go.ISmsBlender {
 	}
 
 	// 2. configId 兜底
-	configId := ""
-	if config.GetConfigId() != "" {
-		configId = config.GetConfigId()
-	}
+	configId := provider.ExtractConfigId(config)
 
 	// 3. 初始化 Blender
 	cfg := config.(*Config)
