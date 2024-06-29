@@ -1,8 +1,11 @@
 package sms4go
 
-// IProviderFactory 基础工厂规范
+// IProviderFactory 接口定义了创建短信混合器和获取供应商信息的行为
 type IProviderFactory interface {
+	// CreateSms 方法用于创建一个新的短信混合器
 	CreateSms(config SupplierConfig) ISmsBlender
+
+	// GetSupplier 方法用于获取供应商信息
 	GetSupplier() string
 }
 

@@ -2,13 +2,22 @@ package sms4go
 
 import "fmt"
 
+// Client 接口定义了客户端的行为
 type Client interface {
+	// CreateSmsBlender 用于创建一个新的 Blender
 	CreateSmsBlender()
-	GetBySupplier(string) ISmsBlender
+
+	// GetBySupplier 根据供应商的名称获取一个 Blender
+	GetBySupplier(supplierName string) ISmsBlender
+
+	// GetSmsBlender 获取默认的 Blender
 	GetSmsBlender() ISmsBlender
-	GetSmsBlenderWithConfigId(string) ISmsBlender
+
+	// GetSmsBlenderWithConfigId 根据配置 ID 获取一个 Blender
+	GetSmsBlenderWithConfigId(configId string) ISmsBlender
 }
 
+// Sms 客户端实现
 type smsClient struct {
 	blends         map[string]ISmsBlender
 	providerHolder *providerFactoryHolder
