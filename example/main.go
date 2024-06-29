@@ -22,6 +22,7 @@ func main() {
 			AccessKeySecret: "WtyESqNrX9g8WlwFTVPH8nGbpwwxAJLB",
 			Signature:       "田浩然前端技术分享",
 			SDKAppId:        "1400626380",
+			TemplateId:      "11",
 		},
 	}
 

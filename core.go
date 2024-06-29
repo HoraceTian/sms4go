@@ -9,22 +9,22 @@ type ISmsBlender interface {
 	GetSupplier() string
 
 	// SendMessage 发送短信并返回响应
-	SendMessage(phone, message string) SmsResponse
+	SendMessage(phone, message string) *SmsResponse
 
 	// SendMessageWithParams 发送短信并使用给定参数返回响应
-	SendMessageWithParams(phone string, params map[string]string) SmsResponse
+	SendMessageWithParams(phone string, params map[string]string) *SmsResponse
 
-	// SendMessageWithTemplate 发送带有模板 ID 和参数的短信并返回响应
-	SendMessageWithTemplate(phone, templateId string, params map[string]string) SmsResponse
+	// SendMessageWithParamsAndTemplate 发送短信并使用给定参数与指定模版返回响应
+	SendMessageWithParamsAndTemplate(phone, templateId string, params map[string]string) *SmsResponse
 
 	// SendMessageAsync 异步发送短信并返回响应
-	SendMessageAsync(phone, message string, callback Callback) SmsResponse
+	SendMessageAsync(phone, message string, callback Callback) *SmsResponse
 
 	// SendMessageWithParamsAsync 异步发送短信并使用给定参数返回响应
-	SendMessageWithParamsAsync(phone string, params map[string]string, callback Callback) SmsResponse
+	SendMessageWithParamsAsync(phone string, params map[string]string, callback Callback) *SmsResponse
 
 	// SendMessageWithTemplateAsync 异步发送具有模板 ID 和参数的短信并返回响应
-	SendMessageWithTemplateAsync(phone, templateId string, params map[string]string, callback Callback) SmsResponse
+	SendMessageWithTemplateAsync(phone, templateId string, params map[string]string, callback Callback) *SmsResponse
 }
 
 // BaseBlender 共有抽象
