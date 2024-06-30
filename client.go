@@ -1,6 +1,9 @@
 package sms4go
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 // Client 接口定义了客户端的行为
 type Client interface {
@@ -21,6 +24,7 @@ type Client interface {
 type smsClient struct {
 	blends         map[string]ISmsBlender
 	providerHolder *providerFactoryHolder
+	httpClient     *http.Client
 }
 
 func (s *smsClient) CreateSmsBlender() {

@@ -2,7 +2,8 @@ package sms4go
 
 // SmsConfig Sms4Go 配置内容
 type SmsConfig struct {
-	IsPrint bool
+	IsPrint     bool
+	HttpTimeout int
 }
 
 // SupplierConfig 供应商配置规范

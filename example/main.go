@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sms4go"
 	"sms4go/infra"
 	"sms4go/provider/tencent"
@@ -22,7 +23,7 @@ func main() {
 			AccessKeySecret: "WtyESqNrX9g8WlwFTVPH8nGbpwwxAJLB",
 			Signature:       "田浩然前端技术分享",
 			SDKAppId:        "1400626380",
-			TemplateId:      "11",
+			TemplateId:      "1290007",
 		},
 	}
 
@@ -37,6 +38,7 @@ func main() {
 	client.CreateSmsBlender()
 
 	blender := client.GetBySupplier("tencent")
-	blender.SendMessage("13947856739", "aaaa")
+	message := blender.SendMessage("13947856739", "123456")
 
+	fmt.Println(fmt.Sprintf("结果是: %v", message))
 }

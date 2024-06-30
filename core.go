@@ -1,7 +1,12 @@
 package sms4go
 
+import "net/http"
+
 // ISmsBlender 是短信 Blender 的接口，定义了短信服务的基本操作
 type ISmsBlender interface {
+	// SetHttpClient 设置基础 Http 客户端
+	SetHttpClient(client *http.Client)
+
 	// GetConfigId 获取配置 ID
 	GetConfigId() string
 
