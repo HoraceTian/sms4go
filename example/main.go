@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"sms4go"
 	"sms4go/infra"
 	"sms4go/supplier/tencent"
+	"time"
 )
 
 func main() {
@@ -38,7 +38,15 @@ func main() {
 	client.CreateSmsBlender()
 
 	blender := client.GetBySupplier("tencent")
-	message := blender.SendMessage("13947856739", "666666&5")
+	//message := blender.SendMessageAsync("13947856739", "666666&5", func(resp *sms4go.SmsResponse) {
+	//	fmt.Println(fmt.Sprintf("异步结果是: %v", resp))
+	//})
+	phones := make([]string, 2)
+	phones[0] = "15661238806"
+	phones[1] = "18004890070"
+	blender.MassTexting(phones, "888888&5")
 
-	fmt.Println(fmt.Sprintf("结果是: %v", message.Data))
+	//fmt.Println(fmt.Sprintf("结果是: %v", message))
+
+	time.Sleep(10 * time.Second)
 }

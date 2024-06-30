@@ -59,5 +59,5 @@ func replenishmentDefaultConfig(config *Config) {
 }
 
 func (f Factory) GetSupplier() string {
-	return infra.Tencent
+	return sms4go.Tencent
 }

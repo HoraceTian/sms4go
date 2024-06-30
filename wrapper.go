@@ -18,10 +18,10 @@ func NewResp(configId string, resultFlag bool, data interface{}) *SmsResponse {
 	}
 }
 
-func NewFailResp(configId string, data interface{}) *SmsResponse {
+func NewFailResp(configId string, err error) *SmsResponse {
 	return &SmsResponse{
 		Success:  false,
 		ConfigId: configId,
-		Data:     data,
+		Data:     err,
 	}
 }

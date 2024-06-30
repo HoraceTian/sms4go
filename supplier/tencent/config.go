@@ -1,6 +1,7 @@
 package tencent
 
 import (
+	"sms4go"
 	"sms4go/infra"
 )
 
@@ -29,5 +30,5 @@ func (c *Config) GetConfigId() string {
 }
 
 func (c *Config) GetSupplier() string {
-	return infra.Tencent
+	return sms4go.Tencent
 }

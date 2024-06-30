@@ -2,6 +2,7 @@ package sms4go
 
 import (
 	"fmt"
+	"github.com/panjf2000/ants/v2"
 	"net/http"
 )
 
@@ -25,6 +26,7 @@ type smsClient struct {
 	blends         map[string]ISmsBlender
 	providerHolder *providerFactoryHolder
 	httpClient     *http.Client
+	routinePool    *ants.Pool
 }
 
 func (s *smsClient) CreateSmsBlender() {
