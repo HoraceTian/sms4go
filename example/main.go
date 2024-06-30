@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sms4go"
 	"sms4go/infra"
-	"sms4go/provider/tencent"
+	"sms4go/supplier/tencent"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	client.CreateSmsBlender()
 
 	blender := client.GetBySupplier("tencent")
-	message := blender.SendMessage("13947856739", "123456")
+	message := blender.SendMessage("13947856739", "666666&5")
 
-	fmt.Println(fmt.Sprintf("结果是: %v", message))
+	fmt.Println(fmt.Sprintf("结果是: %v", message.Data))
 }

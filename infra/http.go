@@ -39,15 +39,15 @@ func GetHttpClient() *HttpClient {
 }
 
 // PostJson 发送POST JSON请求
-func (hc *HttpClient) PostJson(urlStr string, headers map[string]string, body interface{}) (map[string]interface{}, error) {
-	// 1. 处理 body
-	jsonBody, err := json.Marshal(body)
+func (hc *HttpClient) PostJson(urlStr string, headers map[string]string, payload *TencentPayload) (map[string]interface{}, error) {
+	// 1. 处理参数
+	jsonBody, err := json.Marshal(payload)
 	if err != nil {
-		return nil, err
+		return nil, errors.New("[sms4go] |- failed to marshal request payload")
 	}
 
 	// 2. 创建请求
-	req, err := http.NewRequest("POST", urlStr, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "https://"+urlStr, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,6 @@ func (hc *HttpClient) PostJson(urlStr string, headers map[string]string, body in
 	for key, value := range headers {
 		req.Header.Set(key, value)
 	}
-	req.Header.Set("Content-Type", "application/json")
 
 	// 4. 发起访问
 	resp, err := hc.client.Do(req)

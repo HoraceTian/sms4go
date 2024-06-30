@@ -77,7 +77,7 @@ func (b *Blender) SendMessageWithParamsAndTemplate(phone, templateId string, par
 
 func (b *Blender) getSmsResponse(phones []string, params []string, templateId string) *sms4go.SmsResponse {
 	// 1. 获取时间
-	timestamp := fmt.Sprintf("%d", time.Now().Unix())
+	timestamp := time.Now().Unix()
 
 	// 2. 生成签名
 	cfg := b.parent.Config.(*Config)
@@ -89,7 +89,7 @@ func (b *Blender) getSmsResponse(phones []string, params []string, templateId st
 	}
 
 	// 3. 处理请求头与请求体
-	headersMap := generateHeadersMap(signature, timestamp, cfg.action, cfg.version, cfg.territory, cfg.requestUrl)
+	headersMap := generateHeadersMap(signature, cfg.action, cfg.version, cfg.territory, cfg.requestUrl, timestamp)
 	requestBody := generateRequestBody(phones, cfg.SDKAppId, cfg.Signature, templateId, params)
 
 	// 4. 发送请求

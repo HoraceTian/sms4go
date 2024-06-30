@@ -45,7 +45,7 @@ func replenishmentDefaultConfig(config *Config) {
 		config.connTimeout = DefaultConnTimeout
 	}
 	if config.requestUrl == "" {
-		config.requestUrl = "https://" + DefaultRequestUrl
+		config.requestUrl = DefaultRequestUrl
 	}
 	if config.action == "" {
 		config.action = DefaultAction
