@@ -1,4 +1,4 @@
-package provider
+package infra
 
 import (
 	"sms4go"

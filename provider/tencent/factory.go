@@ -2,7 +2,7 @@ package tencent
 
 import (
 	"sms4go"
-	"sms4go/provider"
+	"sms4go/infra"
 )
 
 type Factory struct {
@@ -20,7 +20,7 @@ func (f Factory) CreateSms(config sms4go.SupplierConfig) sms4go.ISmsBlender {
 	}
 
 	// 2. configId 兜底
-	configId := provider.ExtractConfigId(config)
+	configId := infra.ExtractConfigId(config)
 
 	// 3. 初始化 Blender
 	cfg := config.(*Config)
@@ -59,5 +59,5 @@ func replenishmentDefaultConfig(config *Config) {
 }
 
 func (f Factory) GetSupplier() string {
-	return provider.Tencent
+	return infra.Tencent
 }

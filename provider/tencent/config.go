@@ -1,6 +1,8 @@
 package tencent
 
-import "sms4go/provider"
+import (
+	"sms4go/infra"
+)
 
 // 基础常量
 const (
@@ -13,7 +15,7 @@ const (
 )
 
 type Config struct {
-	provider.BaseConfig
+	infra.BaseConfig
 	territory   string
 	connTimeout int
 	requestUrl  string
@@ -27,5 +29,5 @@ func (c *Config) GetConfigId() string {
 }
 
 func (c *Config) GetSupplier() string {
-	return provider.Tencent
+	return infra.Tencent
 }

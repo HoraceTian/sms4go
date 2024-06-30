@@ -2,7 +2,7 @@ package main
 
 import (
 	"sms4go"
-	"sms4go/provider"
+	"sms4go/infra"
 	"sms4go/provider/tencent"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	// 3. 提供厂商配置
 	configMap := make(map[string]sms4go.SupplierConfig)
 	configMap["tencent"] = &tencent.Config{
-		BaseConfig: provider.BaseConfig{
+		BaseConfig: infra.BaseConfig{
 			AccessKeyId:     "AKIDTowrXCgO8a1JkAe0CD6sR6nLkN4hHpIb",
 			AccessKeySecret: "WtyESqNrX9g8WlwFTVPH8nGbpwwxAJLB",
 			Signature:       "田浩然前端技术分享",

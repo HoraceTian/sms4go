@@ -1,4 +1,4 @@
-package provider
+package infra
 
 const (
 	// Tencent 腾讯云短信服务

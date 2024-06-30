@@ -1,5 +1,6 @@
-package provider
+package infra
 
+// BaseConfig Sms 基础配置
 type BaseConfig struct {
 	Factory         string
 	AccessKeyId     string

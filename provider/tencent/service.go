@@ -3,7 +3,7 @@ package tencent
 import (
 	"fmt"
 	"sms4go"
-	"sms4go/provider"
+	"sms4go/infra"
 	"strings"
 )
 
@@ -16,12 +16,12 @@ func (b Blender) GetConfigId() string {
 }
 
 func (b Blender) GetSupplier() string {
-	return provider.Tencent
+	return infra.Tencent
 }
 
 func (b Blender) SendMessage(phone, message string) *sms4go.SmsResponse {
 	// 1. 处理参数
-	split := strings.Split(message, provider.ParamSeparate)
+	split := strings.Split(message, infra.ParamSeparate)
 	paramMap := make(map[string]string, len(split))
 	for _, param := range split {
 		paramMap[param] = param
@@ -65,7 +65,7 @@ func (b Blender) SendMessageWithParamsAndTemplate(phone, templateId string, para
 	for _, value := range params {
 		paramList = append(paramList, value)
 	}
-	phones := []string{provider.AddPrefixIfNot(phone, "+86")}
+	phones := []string{infra.AddPrefixIfNot(phone, "+86")}
 	return b.getSmsResponse(phones, paramList, templateId)
 }
 
