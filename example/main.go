@@ -1,10 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"sms4go"
-	"sms4go/infra"
 	"sms4go/supplier/tencent"
-	"time"
 )
 
 func main() {
@@ -18,12 +17,12 @@ func main() {
 	// 3. 提供厂商配置
 	configMap := make(map[string]sms4go.SupplierConfig)
 	configMap["tencent"] = &tencent.Config{
-		BaseConfig: infra.BaseConfig{
-			AccessKeyId:     "AKIDTowrXCgO8a1JkAe0CD6sR6nLkN4hHpIb",
-			AccessKeySecret: "WtyESqNrX9g8WlwFTVPH8nGbpwwxAJLB",
-			Signature:       "田浩然前端技术分享",
-			SDKAppId:        "1400626380",
-			TemplateId:      "1290007",
+		BaseConfig: sms4go.BaseConfig{
+			AccessKeyId:     "你的腾讯云 AccessKeyId",
+			AccessKeySecret: "你的腾讯云 AccessKeySecret",
+			Signature:       "你的 Signature",
+			SDKAppId:        "你的 SDKAppId",
+			TemplateId:      "你的 模板Id",
 		},
 	}
 
@@ -34,19 +33,8 @@ func main() {
 		sms4go.WithSmsConfig(smsConfig),
 		sms4go.WithProviderFactories(tencent.NewFactory()),
 	)
-
 	client.CreateSmsBlender()
-
 	blender := client.GetBySupplier("tencent")
-	//message := blender.SendMessageAsync("13947856739", "666666&5", func(resp *sms4go.SmsResponse) {
-	//	fmt.Println(fmt.Sprintf("异步结果是: %v", resp))
-	//})
-	phones := make([]string, 2)
-	phones[0] = "15661238806"
-	phones[1] = "18004890070"
-	blender.MassTexting(phones, "888888&5")
-
-	//fmt.Println(fmt.Sprintf("结果是: %v", message))
-
-	time.Sleep(10 * time.Second)
+	message := blender.SendMessage("手机号", "参数")
+	fmt.Println(fmt.Sprintf("结果是: %v", message))
 }

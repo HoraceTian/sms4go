@@ -2,7 +2,6 @@ package tencent
 
 import (
 	"sms4go"
-	"sms4go/infra"
 )
 
 // 基础常量
@@ -16,7 +15,7 @@ const (
 )
 
 type Config struct {
-	infra.BaseConfig
+	sms4go.BaseConfig
 	territory   string
 	connTimeout int
 	requestUrl  string

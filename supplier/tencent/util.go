@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"sms4go/infra"
+	"sms4go"
 	"strconv"
 	"strings"
 	"time"
@@ -83,8 +83,8 @@ func generateHeadersMap(authorization, action, version, territory, requestUrl st
 }
 
 // GenerateRequestBody 生成腾讯云短信请求body
-func generateRequestBody(phones []string, sdkAppId, signatureName, templateId string, templateParamSet []string) *infra.TencentPayload {
-	payload := &infra.TencentPayload{
+func generateRequestBody(phones []string, sdkAppId, signatureName, templateId string, templateParamSet []string) *sms4go.TencentPayload {
+	payload := &sms4go.TencentPayload{
 		PhoneNumberSet:   phones,
 		SignName:         signatureName,
 		SmsSdkAppId:      sdkAppId,

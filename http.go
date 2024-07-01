@@ -1,4 +1,4 @@
-package infra
+package sms4go
 
 import (
 	"bytes"

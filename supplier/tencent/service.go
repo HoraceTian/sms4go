@@ -5,14 +5,13 @@ import (
 	"log"
 	"net/http"
 	"sms4go"
-	"sms4go/infra"
 	"strings"
 	"time"
 )
 
 type Blender struct {
 	parent     sms4go.BaseBlender
-	httpClient *infra.HttpClient
+	httpClient *sms4go.HttpClient
 }
 
 func (b *Blender) GetConfigId() string {
@@ -81,7 +80,7 @@ func (b *Blender) SendMessageWithParamsAndTemplate(phone, templateId string, par
 	for _, value := range params {
 		paramList = append(paramList, value)
 	}
-	phones := []string{infra.AddPrefixIfNot(phone, "+86")}
+	phones := []string{sms4go.AddPrefixIfNot(phone, "+86")}
 	return b.createSmsResponse(phones, paramList, templateId)
 }
 
@@ -171,13 +170,13 @@ func (b *Blender) MassTextingWithParamsAndTemplate(phones []string, templateId s
 		paramList = append(paramList, value)
 	}
 	for index, phone := range phones {
-		phones[index] = infra.AddPrefixIfNot(phone, "+86")
+		phones[index] = sms4go.AddPrefixIfNot(phone, "+86")
 	}
 	return b.createSmsResponse(phones, paramList, templateId)
 }
 
 func (b *Blender) SetHttpClient(client *http.Client) {
-	b.httpClient = infra.NewHttpClient(client)
+	b.httpClient = sms4go.NewHttpClient(client)
 }
 
 func (b *Blender) SetRoutinePool(pool *ants.Pool) {

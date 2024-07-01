@@ -1,4 +1,4 @@
-package infra
+package sms4go
 
 // TencentPayload 腾讯Payload
 type TencentPayload struct {

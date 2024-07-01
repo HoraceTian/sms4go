@@ -1,4 +1,4 @@
-package infra
+package sms4go
 
 // BaseConfig Sms 基础配置
 type BaseConfig struct {
