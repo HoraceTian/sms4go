@@ -10,7 +10,9 @@
 
 ## 如何使用
 ### 引入依赖
-
+```shell
+ go get github.com/HoraceTian/sms4go
+```
 ### 简单案例
 ```golang
 package main
